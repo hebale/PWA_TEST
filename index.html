@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .dim { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.2) };
+
+
+
+        .popup { border-radius: 20;}
+
+        /* 인풋 - 기본값 */
+        .input_pack { position: relative; display: inline-block; width: 100%; font-size: 0; vertical-align: middle; word-break: break-all;}
+        .input_pack input { outline: 0; -webkit-appearance: none; -moz-appearance: none; appearance: none; -webkit-box-sizing: border-box; box-sizing: border-box; border: none; border-radius: 0; -webkit-box-shadow: none; box-shadow: none; font-size: 16px; color: #333; }
+        .input_pack input::-ms-clear, .input_pack input::-ms-reveal { display: none; }
+        .input_pack input::-ms-check { visibility: hidden; }
+        .input_pack input[type="number"]::-webkit-outer-spin-button,
+        .input_pack input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; -moz-appearance: none; appearance: none; }
+        .input_pack input[type="number"] { -moz-appearance: textfield; }
+
+
+        .input_pack [type="text"] { padding: 0 60px 0 20px; width: 100%; height: 48px; line-height: 48px; border-radius: 6px; background-color: #f2f3f4; vertical-align: middle; }
+.input_pack [type="text"]::placeholder { color: #e3e3e3; }
+.input_pack [type="text"]:-ms-input-placeholder { color: #e3e3e3; }
+.input_pack [type="text"]::-webkit-input-placeholder { color: #e3e3e3; }
+.input_pack [type="text"]::-moz-placeholder { color: #e3e3e3; }
+.input_pack [type="password"] { padding: 0 60px 0 20px; width: 100%; height: 48px; line-height: 48px; border-radius: 6px; background-color: #f2f3f4; vertical-align: middle; }
+.input_pack [type="password"]::placeholder { color: #e3e3e3; }
+.input_pack [type="password"]:-ms-input-placeholder { color: #e3e3e3; }
+.input_pack [type="password"]::-webkit-input-placeholder { color: #e3e3e3; }
+.input_pack [type="password"]::-moz-placeholder { color: #e3e3e3; }
+
+        /* 기본셋팅 */
+        .btn_pack { font-size: 0; vertical-align: middle; }
+        .btn_pack button { -webkit-tap-highlight-color: rgba(55, 80, 180, 0); display: inline-block; padding: 0; border: none; box-sizing: border-box; -webkit-box-sizing: border-box; outline: none; font-size: 14px; appearance: none; -webkit-appearance: none; text-decoration: none; cursor: pointer; }
+        .btn_pack button[disabled="disabled"] { cursor: default;}
+
+        /* 버튼그룹 */
+        .btn_group { font-size: 0; }
+        .btn_group .btn_pack { display: inline-block; width: calc( 50% - 3px); margin-right: 6px; }
+        .btn_group .btn_pack:last-child { margin-right: 0px; }
+
+        /* 팝업 - 팝업 */
+        div.popup_wrap { z-index: 4000; position: absolute; _display: none; }
+        div.popup_layer { overflow: hidden; position: fixed; top: 50%; left: 50%; width: 300px; height: 150px; margin-top: -75px; margin-left: -150px; width: 90%; max-width: 500px; border-radius: 8px; background:#fff; } /* 20200819 min-height값 제거 기존값 200px*/
+        div.popup_layer div.popup_inner {}
+
+        /* 팝업 - 팝업 - 헤더 */
+        div.popup_layer div.popup_header { z-index: 500; position: absolute; top: 0; left: 0; width: 100%; padding: 35px 56px 10px; box-sizing: border-box; background: #fff; }
+        div.popup_layer div.popup_header .popup_title { font-size: 20px; font-weight: bold; text-align: center; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+
+        /* 팝업 - 팝업 - 콘텐츠 */
+        div.popup_layer div.popup_container { padding: 0; height: 100%; box-sizing: border-box; }
+        div.popup_layer div.popup_container div.popup_scroll { overflow-x: hidden; overflow-y: auto; height: 100%; padding: 0 16px; }
+        div.popup_layer div.popup_container div.popup_scroll div.popup_scrollinner { padding: 10px 0 30px; box-sizing: border-box; }
+
+        /* 팝업 - 팝업 - 푸터 */
+        div.popup_layer div.popup_footer { z-index: 400; position: absolute; bottom: 0; width: 100%; background: #fff; }
+        div.popup_layer div.popup_footer div.popup_btn_wrap { padding: 0; box-sizing: border-box; text-align: center; }
+        div.popup_layer div.popup_footer div.popup_btn_wrap .btn_group .btn_pack { width: 50%; margin: 0; }
+        div.popup_layer div.popup_footer div.popup_btn_wrap .btn_pack .btn_main { font-weight: normal; border-radius: 0; }
+
+
+        .btn_pack .btn_main { width: 100%; height: 60px; border-radius: 6px; font-size: 16px; font-weight: bold; color: #fff; text-align: center; background-color: #3750b4; }
+        .btn_pack .btn_main:not([disabled="disabled"]):hover { background-color: #2C439F; }
+        .btn_pack .btn_main[disabled="disabled"] { color: rgba(255, 255, 255, 0.5); background-color: #e3e3e3; }
+      
+        .btn_pack .btn_sub { width: 100%; height: 36px; border-radius: 6px; font-size: 12px; color: #fff; background-color: #3750b4; }
+        .btn_pack .btn_sub:not([disabled="disabled"]):hover { background-color: #2C439F; }
+        .btn_pack .btn_sub[disabled="disabled"] { color: rgba(255, 255, 255, 0.5); background-color: #e3e3e3; }
+
+        /* 버튼 - 메인 - 테마 - 그레이쉬 */
+        .btn_pack .btn_main.type_graysh { color: #333; background: #f4f5f6; }
+        .btn_pack .btn_main.type_graysh:not([disabled="disabled"]):hover { background-color: #eaeaea; }
+
+
+    </style>
+</head>
+<body>
+    <div class="dim"></div>
+    <div id="tempPopup01" class="popup_wrap">
+        <div class="popup_layer">
+            <div class="popup_inner">           
+                
+                <div class="popup_container">
+                    <div class="popup_scroll">
+                        <div class="popup_scrollinner">
+                            <!-- s : 팝업 콘텐츠 -->
+                            <div class="popup_text">
+                                테스트용 인풋
+                            </div>
+                            <div class="popup_form_group">
+                                <div class="input_pack">
+                                    <input type="password" placeholder="비밀번호 입력" value="" title="">
+                                </div>
+                            </div>
+                            <!-- s : 팝업 콘텐츠 -->
+                        </div>
+                    </div>
+                </div>
+                <div class="popup_footer">		
+                    <div class="popup_btn_wrap">
+                        <!-- s : 팝업 푸터 -->
+                        <div class="btn_group">
+                            <div class="btn_pack">
+                                <button type="button" class="btn_main type_graysh" title="" data-action="hide">취소</button>
+                            </div>
+                            <div class="btn_pack">
+                                <button type="button" class="btn_main" title="" data-action="hide">확인</button>
+                            </div>
+                        </div>
+                        <!-- e : 팝업 푸터 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
