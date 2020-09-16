@@ -5,7 +5,7 @@
 const _version = 'v3';
 const cacheName = 'v1';
 const cacheList = [
-  '/',
+  './',
   '/script/app.js',
   '/style/index.css',
   '/images/1.jpg',
