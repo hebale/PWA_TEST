@@ -15,7 +15,14 @@ const log = msg => {
 
 // Life cycle: INSTALL
 self.addEventListener('install', event => {
+
+  self.skipWaiting();
   log('INSTALL');
+  caches.open(cacheName).then(cache => {
+    log('Caching app shell');
+    return cache.addAll(cacheList);
+  })
+  
 });
 
 // Life cycle: ACTIVATE
