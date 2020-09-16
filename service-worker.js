@@ -28,7 +28,7 @@ self.addEventListener('install', event => {
   self.skipWaiting(); // 서비스워커 즉시활성화
   
   log('install')
-  evebt.waitUntil(
+  event.waitUntil(
     caches.open(cacheName).then(cache => {
       log('Caching app shell');
       return cache.addAll(cacheList);
@@ -46,7 +46,7 @@ self.addEventListener('activate', event => {
         if (key !== cacheName) {
           log('Removing old cache ' + key);
           return caches.delete(key);
-        }
+        };
       }));
     })
   );
