@@ -18,14 +18,12 @@ self.addEventListener('install', event => {
 
   self.skipWaiting();
   log('INSTALL');
-
-  console.log( caches )
-  console.log( cache )
-  
-  caches.open(cacheName).then(cache => {
-    log('Caching app shell');
-    return cache.addAll(cacheList);
-  })
+  event.waitUntil(
+    caches.open(cacheName).then(cache => {
+      log('Caching app shell');
+      return cache.addAll(cacheList);
+    })
+  );
 
 });
 
