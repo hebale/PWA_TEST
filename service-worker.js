@@ -26,9 +26,10 @@ const log = msg => {
 self.addEventListener('install', event => {
 
   self.skipWaiting(); // 서비스워커 즉시활성화
+  
   log('install')
   caches.open(cacheName).then(cache => {
-    log('.Caching app shell');
+    log('Caching app shell');
     return cache.addAll(cacheList);
   });
 });
