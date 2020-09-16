@@ -12,3 +12,26 @@ const cacheList = [
 const log = msg => {
   console.log(`[ServiceWorker ${_version}] ${msg}`);
 }
+
+
+
+
+
+
+
+
+// INSTALL EVENT
+self.addEventListener('install', event => {
+  log('install')
+});
+
+// ACTIVATE EVENT
+self.addEventListener('activate', event => {
+  log('activate')
+});
+
+// FETCH
+self.addEventListener('fetch', event => {
+  log('fetch' + event.request.url )
+});
+
