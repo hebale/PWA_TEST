@@ -32,7 +32,7 @@ self.addEventListener('install', event => {
     caches.open(cacheName).then(cache => {
       log('Caching app shell');
       return cache.addAll(cacheList);
-    });
+    })
   );
 
 });
