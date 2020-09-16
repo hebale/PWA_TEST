@@ -1,7 +1,7 @@
 # Progressive Web App Example
 
-## Chapter 1
+## Chapter 3
 
-- PWA에 대한 기본 이론 학습
-- 예제 웹 서버 띄우기
-- 코드 분석
+- 필요한 리소스 캐싱하기
+- 사용하지 않는 캐시 삭제하기
+- 오프라인 환경에서 캐싱된 데이터 응답하기
