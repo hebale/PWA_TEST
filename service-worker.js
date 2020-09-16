@@ -19,10 +19,10 @@ self.addEventListener('install', event => {
   self.skipWaiting();
   log('INSTALL');
   event.waitUntil(
-    caches.open(cacheName).then(cache => {
+    caches.open(cacheName).then(function(cache){
       log('Caching app shell');
-      // return cache.addAll(cacheList);
-    })
+      return cache.addAll(cacheList);      
+    });    
   );
 
 });
