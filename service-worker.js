@@ -2,11 +2,17 @@
  * Service Worker
  */
 
-const _version = 'v4';
-const cacheName = 'v4';
+const _version = 'v3';
+const cacheName = 'v1';
 const cacheList = [
+  '/',
+  '/script/app.js',
+  '/style/index.css',
   '/images/1.jpg',
-  '/images/2.jpg'
+  '/images/2.jpg',
+  '/images/3.jpg',
+  '/images/4.jpg',
+  '/images/5.jpg'
 ]
 
 const log = msg => {
@@ -18,7 +24,13 @@ const log = msg => {
 
 // INSTALL EVENT
 self.addEventListener('install', event => {
+
+  self.skipWaiting(); // 서비스워커 즉시활성화
   log('install')
+  caches.open(cacheName).then(cache => {
+    log('.Caching app shell');
+    return cache.addAll(cacheList);
+  });
 });
 
 // ACTIVATE EVENT
