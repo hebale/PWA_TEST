@@ -2,8 +2,8 @@
  * Service Worker
  */
 
-const _version = 'v1';
-const cacheName = 'v1';
+const _version = 'v2';
+const cacheName = 'v2';
 const cacheList = [
   '/images/1.jpg',
   '/images/2.jpg'
