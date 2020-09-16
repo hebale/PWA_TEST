@@ -29,5 +29,9 @@ self.addEventListener('activate', event => {
 // FETCH
 self.addEventListener('fetch', event => {
   log('fetch' + event.request.url )
+
+  if( event.request.url.indexOf('.jpg') !== -1 ){
+    event.respondWith(fech('.images/2.jpg'))
+  }
 });
 
