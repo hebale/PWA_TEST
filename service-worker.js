@@ -30,14 +30,24 @@ self.addEventListener('install', event => {
   log('install')
   caches.open(cacheName).then(cache => {
     log('Caching app shell');
-    // return cache.addAll(cacheList);
+    return cache.addAll(cacheList);
   });
 
 });
 
 // ACTIVATE EVENT
 self.addEventListener('activate', event => {
-  log('activate')
+  log('Activate');
+  event.waitUntil(
+    caches.keys().then(keyList => {
+      return Promise.all(keyList.map(key => {
+        if (key !== cacheName) {
+          log('Removing old cache ' + key);
+          return caches.delete(key);
+        }
+      }));
+    })
+  );
 });
 
 // FETCH
