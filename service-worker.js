@@ -16,10 +16,6 @@ const log = msg => {
 
 
 
-
-
-
-
 // INSTALL EVENT
 self.addEventListener('install', event => {
   log('install')
