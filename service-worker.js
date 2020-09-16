@@ -2,8 +2,8 @@
  * Service Worker
  */
 
-const _version = 'v3';
-const cacheName = 'v3';
+const _version = 'v4';
+const cacheName = 'v4';
 const cacheList = [
   '/images/1.jpg',
   '/images/2.jpg'
@@ -31,7 +31,7 @@ self.addEventListener('fetch', event => {
   log('fetch' + event.request.url )
 
   if( event.request.url.indexOf('.jpg') !== -1 ){
-    event.respondWith(fetch('.images/2.jpg'))
+    event.respondWith(fetch('images/2.jpg'))
   }
 });
 
