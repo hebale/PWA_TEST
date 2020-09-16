@@ -25,6 +25,10 @@ header {
   padding-bottom: 0;
 }
 
+.wrap.hide {
+  display: none;
+}
+
 .wrap button {
   cursor: pointer;
   outline: none;
@@ -32,13 +36,36 @@ header {
   border-radius: 4px;
   background-color: #fff;
   padding: 4px 12px;
-  width: 2.5rem;
+  transition: .3s;
+}
+
+.wrap button:disabled {
+  cursor: not-allowed;
+  outline: none;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  background-color: #eee;
+  color: #aaa;
+  padding: 4px 12px;
   transition: .3s;
 }
 
 .wrap button:hover {
   background-color: dodgerblue;
   color: #fff;
+}
+
+.wrap button:disabled:hover {
+  background-color: #eee;
+  color: #aaa;
+}
+
+.wrap #subscription_detail {
+  padding: 4px;
+  width: 100%;
+  background-color: #eee;
+  border-radius: 4px;
+  word-break: break-all;
 }
 
 .image {
