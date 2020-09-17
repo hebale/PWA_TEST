@@ -3,9 +3,10 @@
  */
 
 const _version = 'v4';
-const cacheName = 'cacheBox';
+const cacheName = 'cacheBox2';
 const cacheList = [
   './',
+  './manifest.json',
   './images/1.png',
   './images/2.png',
   './images/3.png',
