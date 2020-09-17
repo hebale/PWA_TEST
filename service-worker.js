@@ -40,7 +40,7 @@ self.addEventListener('activate', event => {
 	log('Activate');
 
 	event.waitUntil(
-		cache.keys().then(keyList => {
+		caches.keys().then(keyList => {
 			return Promise.all(keyList.map(key => {
                 if(key !== cacheName){
                     log('.Removing old cache ' + key);
