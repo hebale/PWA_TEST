@@ -2,7 +2,7 @@
  * Service Worker
  */
 
-const _version = 'v2';
+const _version = 'v4';
 const cacheName = 'cacheBox';
 const cacheList = [
   './',
@@ -41,7 +41,11 @@ self.addEventListener('activate', event => {
 // Functional: FETCH
 self.addEventListener('fetch', event => {
   log('Fetch ' + event.request.url);
-  if (event.request.url.indexOf('.jpg') !== -1) {
-    event.respondWith(fetch('/images/2.png'))
-  }
+
+  event.respondWith(
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
+  );
+
 });
