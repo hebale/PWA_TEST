@@ -11,7 +11,7 @@ const cacheList = [
   './images/3.png',
   './images/4.png',
   './images/5.png',
-  './script/app.js'
+  './scripts/app.js'
 ]
 
 const log = msg => {
