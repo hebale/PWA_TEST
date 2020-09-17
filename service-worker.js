@@ -5,8 +5,8 @@
 const _version = 'v2';
 const cacheName = 'v1';
 const cacheList = [
-  '/images/1.jpg',
-  '/images/2.jpg'
+  '/images/1.png',
+  '/images/2.png'
 ]
 
 const log = msg => {
@@ -18,6 +18,7 @@ self.addEventListener('install', event => {
 
   self.skipWaiting();
   log('INSTALL');
+
   event.waitUntil(
     caches.open(cacheName).then(function(cache){
       log('Caching app shell');
@@ -36,6 +37,6 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   log('Fetch ' + event.request.url);
   if (event.request.url.indexOf('.jpg') !== -1) {
-    event.respondWith(fetch('/images/2.jpg'))
+    event.respondWith(fetch('/images/2.png'))
   }
 });
