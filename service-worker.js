@@ -5,8 +5,8 @@
 const _version = 'v2';
 const cacheName = 'v1';
 const cacheList = [
-  '/images/1.png',
-  '/images/2.png'
+  './images/1.png',
+  './images/2.png'
 ]
 
 const log = msg => {

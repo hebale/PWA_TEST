@@ -60,9 +60,10 @@
 
   // TODO: 아래에 서비스워커 등록
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./service-worker.js').then(() => {
-      console.log('Service Worker Registered');
-    });
-  }
+    navigator.serviceWorker
+      .register('./service-worker.js')
+      .then(reg => console.log('Service Worker Registered'))
+      .catch(err => console.log('Service Worker Error'));
+  };
 
 })();
