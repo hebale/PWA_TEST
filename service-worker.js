@@ -22,7 +22,7 @@ self.addEventListener('install', event => {
     caches.open(cacheName).then(function(cache){
       log('Caching app shell');
       return cache.addAll(cacheList);      
-    });    
+    })
   );
 
 });
