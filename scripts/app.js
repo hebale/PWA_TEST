@@ -28,8 +28,8 @@
     localStorage.setItem('images', JSON.stringify(this.images));
   }
 
-  // 이미지 리스트 불러오기, 데이터가 없을 경우 ['images/1.jpg']로 대체
-  app.images = JSON.parse(localStorage.getItem('images')) || ['images/1.jpg'];
+  // 이미지 리스트 불러오기, 데이터가 없을 경우 ['images/1.png']로 대체
+  app.images = JSON.parse(localStorage.getItem('images')) || ['images/1.png'];
   app.saveImageList();
   app.showImage();
 
@@ -39,7 +39,7 @@
     document.getElementById('add').onclick = function () {
       let length = app.images.length;
       if (length < 5) {
-        app.images.push(`images/${app.images.length + 1}.jpg`);
+        app.images.push(`images/${app.images.length + 1}.png`);
         app.saveImageList();
         app.showImage();
       } else {
